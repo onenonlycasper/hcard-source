@@ -1,0 +1,45 @@
+<entry-title>vCard 4 RFC 6350</entry-title>
+
+{{stub}}
+
+[http://www.ietf.org/rfc/rfc6350.txt RFC&nbsp;6350], "vCard Format Specification", commonly referred to as vCard, forms the basis of the  [[microformats-2]] [[hcard|hCard]] microformat.
+
+When normatively referencing <nowiki>RFC 6350</nowiki> on this wiki, either do so by linking to this page with 
+ <nowiki>{{RFC6350}}</nowiki>
+or directly to http://www.ietf.org/rfc/rfc6350.txt.
+
+== new properties ==
+The following is an (incomplete) list of the new properties introduced in vCard 4:
+* <code>anniversary</code>
+** <code>p-anniversary</code> in [[h-card]]
+* <code>gender</code> - with subproperties <code>sex</code> and <code>gender-identity</code>
+** <code>p-sex</code> and <code>p-gender-identity</code> respectively in [[h-card]]
+* <code>related</code> - http://tools.ietf.org/html/rfc6350#section-6.6.6
+** vCard4 incorporates by reference all [[xfn]] rel values and adds:
+** '<code>agent</code>' - we should consider a [[rel-agent]] accordingly (at least reserve).
+** '<code>emergency</code>' - we should consider a [[rel-emergency]] accordingly (at least reserve).
+* <code>member</code>
+* <code>calscale</code>
+* ...
+
+== email list ==
+The email list where vCard 4 is discussed is here:
+
+* subscribe: https://www.ietf.org/mailman/listinfo/vcarddav
+* archives: http://www.ietf.org/mail-archive/web/vcarddav/current/maillist.html
+
+To post a message to all the list members, send email to mailto:vcarddav@ietf.org.
+
+== feedback ==
+Please feel free to record feedback here inline as well as send it to the vcarddav mailing list.  If this section grows too big, we can move it to [[vcard4-feedback]].
+
+* ...
+
+== alternate references ==
+Avoid linking to the informative HTML translation of rfc6350.txt, which you must explicitly do by avoiding simply using the string '''<nowiki>RFC 6350</nowiki>''' in your text, as MediaWiki appears to auto-hyperlink it to the HTML translation thus: RFC 6350.
+
+== see also ==
+* [[vCard]]
+* [[vcard-errata]]
+* [[vcard-suggestions]]
+* [[hCard]]
