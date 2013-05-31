@@ -1,0 +1,527 @@
+<entry-title>hCard 1.0</entry-title>
+<span class="vcard"><span class="fn">[[User:Tantek|Tantek Çelik]]</span> (<span class="role">Editor</span>, <span class="role">Author</span>)</span>, <span class="vcard"><span class="fn">[[User:Brian|Brian Suda]]</span> (<span class="role">Author</span>)</span>
+----
+<dfn style="font-style:normal;font-weight:bold">hCard</dfn> is a simple, open format for publishing people, companies, organizations on the web, using a 1:1 representation of vCard ([[rfc-2426|RFC2426]]) properties and values in HTML. hCard is one of several open [[microformats|microformat]] standards suitable for embedding data in HTML/HTML5, and Atom/RSS/XHTML or other XML.
+
+Translations: [[hcard-fr|<span lang="fr">Français</span>]] • [[hcard-ja|<span lang="ja">日本語</span>]] • [[hcard-ru|<span lang="ru">Русский</span>]] • [[hcard-th|<span lang="th">ภาษาไทย</span>]] • [[hcard-zh|<span lang="zh">漢語</span>]] • <span style="font-size:.8em">([[how-to-start-new-translation|Add your language]])</span><br/>
+[[hcard#Copyright|Copyright]] and [[hcard#Patents|patents]] statements apply. See [[hcard#Inspiration_and_Acknowledgments|acknowledgments]].
+
+== Example ==
+hCards are most often used to represent people:
+<source lang=html4strict>
+<div class="vcard">
+ <a class="url fn" href="http://tantek.com/">Tantek Çelik</a>
+</div>
+</source>
+and organizations:
+<source lang=html4strict>
+<div class="vcard">
+ <a class="url fn org" href="http://microformats.org/">microformats.org</a>
+</div>
+</source>
+<div style="float:right;background:rgb(248, 247, 236); border:2px solid rgb(225, 229, 186); margin-left:2em" class="box">
+=== Get started ===
+http://microformats.org/wiki/skins/Microformats/images/bullet.gif Create a [http://microformats.org/code/hcard/creator new hCard]<br/>
+http://microformats.org/wiki/skins/Microformats/images/bullet.gif Learn [[hcard-authoring|hCard authoring]]
+</div>
+
+
+The class '''<code>vcard</code>''' is a ''[[hcard#Root_Class_Name|root class name]]'' that indicates the presence of an hCard.
+
+The classes '''<code>url</code>''', '''<code>fn</code>''', and '''<code>org</code>''' define  ''properties'' of the hCard.
+
+== Properties ==
+<div style="white-space:nowrap;float:left">Common hCard properties (inside class <code>'''vcard'''</code>)
+* <code>'''fn'''</code> - name, formatted/full. required
+* <code>'''n'''</code> - structured name, container for:
+** <code>'''honorific-prefix'''</code> - e.g. Ms., Mr., Dr.
+** <code>'''given-name'''</code> - given (often first) name
+** <code>'''additional-name'''</code> - other/middle name
+** <code>'''family-name'''</code> - family (often last) name
+** <code>'''honorific-suffix'''</code> - e.g. Ph.D., Esq.
+* <code>'''nickname'''</code> - nickname/alias, e.g. [[IRC]] <abbr title="nickname">nick</abbr>
+* <code>'''org'''</code> - company/organization
+* <code>'''photo'''</code> - photo, icon, avatar
+* <code>'''url'''</code> - home page for this contact
+* <code>'''email'''</code> - email address
+* <code>'''tel'''</code> - telephone number
+* <code>'''[[adr]]'''</code> - structured address, container for:
+** <code>'''street-address'''</code> - street <abbr title="number">#</abbr>+name, <abbr title="apartment">apt</abbr>/<abbr title="suite">ste</abbr>
+** <code>'''locality'''</code> - city or village
+** <code>'''region'''</code> - state or province
+** <code>'''postal-code'''</code> - postal code, e.g. <abbr title="United States">U.S.</abbr> ZIP
+** <code>'''country-name'''</code> - country name
+* <code>'''bday'''</code> - birthday. [[date-pattern|ISO date]].
+* <code>'''category'''</code> - for tagging contacts
+* <code>'''note'''</code> - notes about the contact
+</div>
+<div style="margin-top:-.4em; float:left;"><span style="display:none">Example hCard of common properties:</span>
+<ul style="list-style:none"><li><code>&lt;div class="'''vcard'''"&gt;</code>
+<ul style="list-style:none; margin-top:-.02em">
+<li><code>&lt;span class="'''fn'''"&gt;Sally Ride&lt;/span&gt;</code></li>
+<li><code>(&lt;span class="'''n'''"&gt;</code><ul style="list-style:none">
+<li><code>&lt;span class="'''honorific-prefix'''"&gt;Dr.&lt;/span&gt;</code></li>
+<li><code>&lt;span class="'''given-name'''"&gt;Sally&lt;/span&gt;</code></li>
+<li><code>&lt;abbr class="'''additional-name'''"&gt;K.&lt;/abbr&gt;</code></li>
+<li><code>&lt;span class="'''family-name'''"&gt;Ride&lt;/span&gt;</code></li>
+<li><code>&lt;span class="'''honorific-suffix'''"&gt;Ph.D.&lt;/span&gt;&lt;/span&gt;),</code></li></ul></li> 
+<li><code>&lt;span class="'''nickname'''"&gt;sallykride&lt;/span&gt; (IRC)</code></li>
+<li><code>&lt;div class="'''org'''"&gt;Sally Ride Science&lt;/div&gt;</code></li>
+<li><code>&lt;img class="'''photo'''" src="<nowiki>http://example.com/sk.jpg</nowiki>"/&gt; </code></li>
+<li><code>&lt;a class="'''url'''" href="<nowiki>http://sally.example.com</nowiki>"&gt;w&lt;/a&gt;,</code></li> 
+<li><code>&lt;a class="'''email'''" href="<nowiki>mailto:sally@example.com</nowiki>"&gt;e&lt;/a&gt; </code></li>
+<li><code>&lt;div class="'''tel'''"&gt;+1.818.555.1212&lt;/div&gt;</code></li>
+<li><code>&lt;div class="'''adr'''"&gt;</code><ul style="list-style:none">
+<li><code>&lt;div class="'''street-address'''"&gt;123 Main st.&lt;/div&gt;</code></li>
+<li><code>&lt;span class="'''locality'''"&gt;Los Angeles&lt;/span&gt;, </code></li>
+<li><code>&lt;abbr class="'''region'''" title="California"&gt;CA&lt;/abbr&gt;, </code></li>
+<li><code>&lt;span class="'''postal-code'''"&gt;91316&lt;/span&gt;</code></li>
+<li><code>&lt;div class="'''country-name'''"&gt;U.S.A&lt;/div&gt;&lt;/div&gt;</code></li></ul></li>
+<li><code>&lt;time class="'''bday'''"&gt;1951-05-26&lt;/time&gt; birthday</code></li>
+<li><code>&lt;div class="'''category'''"&gt;physicist&lt;/div&gt;</code></li>
+<li><code>&lt;div class="'''note'''"&gt;1st American woman in space.&lt;/div&gt;</code></li></ul></li>
+<li><code>&lt;/div&gt;</code></li></ul>
+</div>
+<div style="clear:both; padding:1em 0 0.5em 0">See the [[hcard#Property_List|full list of properties]] for the complete list.
+</div>
+__TOC__
+
+== Status ==
+hCard 1.0 is a microformats.org specification. Public discussion on hCard takes place on [[hcard-feedback]], the #microformats [[irc]] channel on irc.freenode.net, and [http://microformats.org/discuss/mail/microformats-discuss/ microformats-discuss mailing list].
+
+=== Errata and Updates ===
+Known errors and issues in this specification are corrected in [[hcard-issues-resolved|resolved]] and [[hcard-issues-closed|closed]] issues. Please check there before reporting [[hcard-issues|issues]].
+
+The hCard 1.0.1 update is currently under development and incorporates known errata corrections as well as the [[value-class-pattern]].
+
+== Background ==
+The vCard standard ([[rfc-2426|RFC2426]]), has been broadly interoperably implemented (e.g. Apple's "Address Book" application built into MacOSX).
+
+In addition, many bloggers identify themselves by name and discuss their friends and family.  With just a tad bit of structure, bloggers can discuss people in their blog(s) in such a way that spiders and other aggregators can retrieve this information, automatically convert them to vCards, and use them in any vCard application or service.
+
+This specification introduces the '''hCard''' format, which uses a 1:1 representation of the properties and values of the aforementioned vCard standard, in semantic HTML.  Bloggers can both embed hCards directly in their web pages, and style them with CSS to make them appear as desired.  In addition, hCard enables applications to retrieve information directly from web pages without having to reference a separate file.
+
+Use the [http://microformats.org/code/hcard/creator hCard creator] and copy the HTML code it generates to your blog or website to publish your contact info.
+
+== Conformance ==
+{{rfc-2119-intro}}
+
+== Format ==
+=== In General ===
+The vCard standard ([[rfc-2426|RFC2426]]) forms the basis of hCard.
+
+The basic format of hCard is to use vCard object/property names in lower-case for class names, and to map the nesting of vCard objects directly into nested HTML elements.
+
+=== Root Class Name ===
+The root class name for an hCard is "vcard".  An element with a class name of "vcard" is itself called an ''hCard''.
+
+=== Properties and Sub-properties ===
+The properties of an hCard are represented by elements inside the hCard.  Elements with class names of the listed properties represent the values of those properties.  Some properties have sub-properties, and those are represented by elements inside the elements for properties.
+
+=== Property List ===
+hCard properties (sub-properties in parentheses like this)
+
+'''Required:'''
+* '''fn'''
+* <span id="property-list-n">'''n'''<sup style="font-size:smaller">[[#note1|1]]</sup></span>
+** family-name
+** given-name 
+** additional-name
+** honorific-prefix
+** honorific-suffix
+Optional:
+* [[adr]]
+** post-office-box
+** extended-address
+** street-address
+** locality
+** region
+** postal-code
+** country-name
+** type
+** value
+* agent
+* bday
+* category
+* class
+* email (type, value)
+* geo
+** latitude
+** longitude
+* key
+* label
+* logo
+* mailer
+* nickname
+* note
+* org (organization-name, organization-unit)
+* photo
+* rev
+* role
+* sort-string
+* sound
+* <span id="property-list-tel">tel<sup style="font-size:smaller">[[#note2|2]]</sup> (type, value)</span>
+* title
+* <span id="property-list-tz">tz<sup style="font-size:smaller">[[#note3|3]]</sup></span>
+* uid
+* url
+
+=== Property Notes ===
+<span id="note1">[[#property-list-n|1. ^]]</span>: The 'n' property is {{optional}} if any [[hcard#Implied_.22n.22_Optimization|implied 'n' optimization rules]] are in effect.<br />
+<span id="note2">[[#property-list-tel|2. ^]]</span>: tel - Authors {{may}} follow the [http://en.wikipedia.org/wiki/E.123 E.123] standard for writing values of telephone numbers. Letter values (e.g. +1-555-FORMATS) {{must}} be converted to numbers. Use an <code>abbr</code> to display letters and provide a numerical value simultaneously, e.g. <code><nowiki><abbr title="+15553676287">+1-555-FORMATS</abbr></nowiki></code>.<br />
+<span id="note3">[[#property-list-tz|3. ^]]</span>: tz - timezones are indicated with the timezone offset, e.g. <code>PST (&lt;span class="tz">-08:00&lt;/span>)</code>.
+
+=== Singular vs. Plural Properties ===
+Singular properties: 'fn', 'n', 'bday', 'tz', 'geo', 'sort-string', 'uid', 'class', 'rev'.  For properties which are singular, the first descendant element with that class {{should}} take effect, any others being ignored.
+
+All other properties {{may}} be plural. Each class instance of such properties creates a new instance of that property.
+
+=== Human vs. Machine readable ===
+The human visible text contents of an element for a property represents the value of that property, with a few exceptions:
+
+If an <code>&lt;abbr&gt;</code> element is used for a property, then the '<code>title</code>' attribute (if present) of the <code>&lt;abbr></code> element is the value of the property, instead of the contents of the element, which instead provide a more human presentable version of the value.
+
+If an <code>&lt;a&gt;</code> element is used for one or more properties, it {{must}} be treated as follows:
+# For the 'photo' property and any other property that takes a URL as its value, the <code>href="..."</code> attribute provides the property value.
+# For other properties, the element's content is the value of the property.
+
+If an <code>&lt;img&gt;</code> element is used for one or more properties, it {{must}} be treated as follows:
+# For the 'photo' property and any other property that takes a URL as its value, the <code>src="..."</code> attribute provides the property value.
+# For other properties, the <code>&lt;img></code> element's '<code>alt</code>' attribute is the value of the property.
+
+If an <code>&lt;object&gt;</code> element is used for one or more properties, it {{must}} be treated as follows:
+# For the 'photo' property and any other property that takes a URL as its value, the <code>data="..."</code> attribute provides the property value.
+# For other properties, the element's content is the value of the property.
+
+=== Value excerpting ===
+Sometimes only part of an element which is the equivalent for a property is used for the value of the property.  This typically occurs when a property has a subtype, like 'tel'. For this purpose, the special class name "<code>value</code>" is used to excerpt out the subset of the element that is the value of the property. E.g. here is an hCard fragment for marking up a home phone number:<br />
+
+vCard:
+<pre><nowiki>
+TEL;TYPE=HOME:+1.415.555.1212
+</nowiki></pre>
+
+hCard:
+<source lang=html4strict>
+<span class="tel">
+ <span class="type">home</span>:
+ <span class="value">+1.415.555.1212</span>
+</span>
+</source>
+
+This hCard fragment could be displayed as:
+
+<div style="border: thin dashed black; width: 95%; padding: .5em 1em;">
+<span class="tel">
+<span class="type">home</span>:
+<span class="value">+1.415.555.1212</span>
+</span>
+</div>
+
+You may want to customize/localize the visible punctuation and not want to include it in what machines see. Use multiple class="value" elements which are then concatenated. E.g. 
+
+<source lang=html4strict>
+<span class="tel">
+ <span class="type">home</span>:
+ <span class="value">+1</span>.<span class="value">415</span>.<span class="value">555</span>.<span class="value">1212</span></span>
+</span>
+</source>
+
+No change in display, but the parsed hCard property value then becomes in vCard:
+
+vCard:
+<pre><nowiki>
+TEL;TYPE=HOME:+14155551212
+</nowiki></pre>
+
+<!-- note for Tantek: review/edit property casing from here on -->
+
+=== Property Exceptions ===
+vCard has several properties which either do not make sense on, or are already implied within the context of a web page.  This section explains what to (not) do with them.
+
+# vCard's '''NAME''', '''PROFILE''', '''SOURCE''', '''PRODID''', '''VERSION''' properties are defined in Sections 2.1.2, 2.1.3, 2.1.4, 3.6.3, 3.6.9 of [[rfc-2426|RFC2426]].  Content publishers {{must-not}} use these properties in their hCards, and as such, hCard consumers/parsers {{must}} IGNORE these properties if they are found within an hCard. Instead. hCard to vCard converters {{should}} use the title of the page where the hCard is found (e.g. the <code><title></code> element in HTML documents) to construct the NAME property, {{may}} output a PROFILE value of "<code>VCARD</code>" per [[rfc-2426|RFC2426]], {{should}} use the URL of the page where the hCard is found to construct the SOURCE property (e.g. perhaps as a parameter to a URL/service that converts hCards to vCards), for an output vCard stream (e.g. a .vcf file). Only services/applications that output actual vCards should write the PRODID property, with the product identifier for said service/application. Similarly, only such services/applications should write the VERSION property, with the value "3.0" (without quotes) per [[rfc-2426|RFC2426]] Section 3.6.9.
+
+=== Organization Contact Info ===
+If the "FN" and "ORG" (organization) properties have the exact same value (typically because they are set on the same element, e.g. class="fn org"), then the hCard represents contact information for a company, organization or place and {{should}} be treated as such. In this case the author also {{must-not}} set the "N" property, or set it (and any sub-properties) explicitly to the empty string "". Thus parsers {{should}} handle the missing "N" property, in this case by implying empty values for all the "N" sub-properties.
+
+=== Implied "N" Optimization ===
+Although vCard requires that the "N" property be present, the authors of the vCard specification ([[rfc-2426|RFC2426]]) themselves do not include "N" properties in their vCards near the end of the spec (p.38).  This apparent contradiction can be resolved by simply allowing the "FN" property to imply "N" property values in typical cases provided in the spec. We do so explicitly in hCard.
+
+If "FN" and "ORG" are not the same (see previous section), and the value of the "FN" property is exactly two words (separated by whitespace), and there is no explicit "N" property, then the "N" property is inferred from the "FN" property.  For "FN"s with either one word see below, and for three or more, the author {{must}} explicitly markup the "N", except for the organization contact info case, [http://microformats.org/wiki/hcard#Organization_Contact_Info see above] for that.
+
+# The content of "FN" is broken into two "words" separated by whitespace.
+# The ''first'' word of the "FN" is interpreted as the "given-name" for the "N" property.
+# The ''second/last'' word of the "FN" is interpreted as the "family-name" for the "N" property.
+# Exception: If the first word ends in a "," comma, then the first word (minus the comma at the end) is interpreted as the "family-name" and the second word is interpreted as the "given-name".
+
+This allows simplification in the typical case of people stating:
+* given-name (space) family-name
+* family-name (comma) given-name
+
+=== Implied "nickname" Optimization ===
+Due to the prevalence of the use of nicknames/handles/usernames in actual content published on the Web (e.g. authors of [[hReview|reviews]]), hCard also has an implied "nickname" optimization to handle this.
+
+Similar to the implied "n" optimization, if "FN" and "ORG" are not the same, and the value of the "FN" property is exactly one word, and there is no explicit "N" property, then:
+
+# The content of the "FN" {{must}} be treated as a "nickname" property value.
+# Parsers {{should}} handle the missing "N" property by implying empty values for all the "N" sub-properties.
+
+Though parsers {{must}} follow the implied nickname optimization, publishers {{should}} explicitly indicate the "nickname" even in this case, e.g.:
+
+<source lang=html4strict>
+<span class="vcard">
+ <span class="fn nickname">daveman692</span>
+</span>
+</source>
+
+The hCard {{may}} have additional explicit "nickname" property values in addition to the implied nickname.
+
+=== Implied "organization-name" Optimization ===
+The "ORG" property has two subproperties, organization-name and organization-unit. Very often authors only publish the organization-name.  Thus if an "ORG" property has no "organization-name" inside it, then its entire contents {{must}} be treated as the "organization-name".
+
+=== Tags as Categories ===
+Categories in hCard {{may}} be represented by tags with [[rel-tag]]. When a category property is a rel-tag, the tag (as defined by rel-tag) is used for that category.
+
+=== type subproperty values ===
+The 'type' subproperty in particular takes different values depending on which property it is a subproperty of.  These 'type' subproperty values are case-INSENSITIVE, meaning "Home" is the same as "home", as well as multivalued, e.g. a tel can be home and preferred:
+
+vCard:
+<pre><nowiki>
+TEL;TYPE=HOME,PREF:+1.415.555.1212
+</nowiki></pre>
+
+hCard:
+<source lang=html4strict>
+<span class="tel"><span class="type">Home</span> (<span class="type">pref</span>erred):
+ <span class="value">+1.415.555.1212</span>
+</span>
+</source>
+
+This could be displayed as:
+
+<div style="border: thin dashed black; width: 95%; padding: .5em 1em; ">
+<span class="tel"><span class="type">Home</span> (<span class="type">pref</span>erred):
+<span class="value">+1.415.555.1212</span>
+</span>
+</div>
+
+==== type with unspecified value ====
+When the type of a property is specified, and there is no explicit value specified, then everything in the property except for the type is considered the value of the property. E.g.
+
+<source lang=html4strict>
+<span class="tel"><span class="type">Home</span> +1.415.555.1212</span>
+</source>
+
+is equivalent to:
+
+<source lang=html4strict>
+<span class="tel"><span class="type">Home</span><span class="value"> +1.415.555.1212</span></span>
+</source>
+
+And thus the type is "home" and the value is "+1.415.555.1212".
+
+==== adr tel email types ====
+The following lists are ''informative''. See [[rfc-2426|RFC2426]] sections 3.2.1 ADR, 3.3.1 TEL, and 3.3.2 EMAIL respectively for normative type values.  They are repeated here for convenience. Default type subproperty value(s) is(are) first in each list and indicated in ALL CAPS.  types may be multivalued.
+
+* adr type: INTL, POSTAL, PARCEL, WORK, dom, home, pref
+* tel type: VOICE, home, msg, work, pref, fax, cell, video, pager, bbs, modem, [http://flickr.com/photos/tags/carcellphone/ car], isdn, pcs
+* email type: INTERNET, x400, pref
+
+=== Profile ===
+The hCard <span id="XMDP_Profile">XMDP profile</span> is at http://microformats.org/profile/hcard
+
+Content that uses hCard {{should}} reference this profile, e.g.
+<source lang=html4strict>
+<link rel="profile" href="http://microformats.org/profile/hcard">
+</source>
+or
+<source lang=html4strict>
+This content uses <a rel="profile" href="http://microformats.org/profile/hcard">hCard</a>.
+</source>
+or
+<source lang=html4strict>
+<head profile="http://microformats.org/profile/hcard">
+</source>
+(profile attribute is deprecated in HTML5)
+Content may combine the above methods as well.
+
+=== Parsing Details ===
+
+See [[hcard-parsing|hCard parsing]].
+
+== Examples ==
+
+This section is informative.
+
+=== Sample vCard ===
+
+Here is a sample vCard:
+
+<pre><nowiki>
+BEGIN:VCARD
+VERSION:3.0
+N:Çelik;Tantek
+FN:Tantek Çelik
+URL:http://tantek.com/
+END:VCARD
+</nowiki></pre>
+
+and an equivalent in hCard with various elements optimized appropriately.  See [[hcard-example1-steps| hCard Example 1]] for the derivation. 
+
+<source lang=html4strict>
+<div class="vcard">
+ <a class="url fn" href="http://tantek.com/">Tantek Çelik</a>
+</div>
+</source>
+
+This hCard might be displayed as:
+<div style="border: thin dashed black; width: 95%; padding: .5em 1em;">
+[http://tantek.com/ Tantek Çelik]
+</div>
+
+Note: The version information is unnecessary in hCard markup directly since the version will be defined by the profile of hCard that is used/referred to in the 'profile' attribute of the <head> element.
+
+===Live example===
+
+Here is [http://www.commerce.net/ Commercenet]'s contact details, as a live hCard which will be detected, on this page, by microformat parsing tools:
+
+<div class="vcard">
+<div class="fn org">'''CommerceNet'''</div>
+<div class="url">'''<nowiki>http://www.commerce.net/</nowiki>'''</div>
+<div class="adr">'''<span class="type">Work</span>:'''
+<div class="street-address">'''169 University Avenue'''</div>
+<span class="locality">'''Palo Alto'''</span>, <span class="region">'''CA'''</span>&nbsp;&nbsp;<span class="postal-code">'''94301'''</span>
+<div class="country-name">'''USA'''</div>
+</div>
+<div class="tel">'''<span class="type">Work</span> +1-650-289-4040'''</div>
+<div class="tel">'''<span class="type">Fax</span> +1-650-289-4041'''</div>
+<div>'''Email <span class="email"><nowiki>info@commerce.net</nowiki></span>'''</div>
+</div>
+
+The mark-up, emboldening omitted for clarity, with the following semantic improvements:
+* <code>abbr</code> to expand abbreviations
+* hyperlinking the org name with the url
+
+<source lang=html4strict>
+<div class="vcard">
+  <a class="fn org url" href="http://www.commerce.net/">CommerceNet</a>
+  <div class="adr">
+    <span class="type">Work</span>:
+    <div class="street-address">169 University Avenue</div>
+    <span class="locality">Palo Alto</span>,  
+    <abbr class="region" title="California">CA</abbr>&nbsp;&nbsp;
+    <span class="postal-code">94301</span>
+    <div class="country-name">USA</div>
+  </div>
+  <div class="tel">
+   <span class="type">Work</span> +1-650-289-4040
+  </div>
+  <div class="tel">
+    <span class="type">Fax</span> +1-650-289-4041
+  </div>
+  <div>Email: 
+   <span class="email">info@commerce.net</span>
+  </div>
+</div>
+</source>
+
+=== More Examples ===
+See [[hcard-examples|hCard examples]] for more examples, including all examples from vCard [[rfc-2426|RFC2426]] converted into hCard.
+
+== Examples in the wild ==
+This section is '''informative'''. The number of hCard examples in the wild has expanded far beyond the capacity of being kept inline in this specification. They have been moved to a [[hcard-examples-in-wild|separate page]].
+
+See [[hcard-examples-in-wild|hCard Examples in the wild]].
+
+== Implementations ==
+This section is '''informative'''. The number of hCard implementations has also expanded beyond the capacity of keeping them inline. They have been moved to a [[hcard-implementations|separate page]].
+
+See [[hcard-implementations|hCard Implementations]].
+
+== Articles ==
+This section is <strong>informative</strong>. For <span id="Further_Reading">further reading</span> on hCard see [[hcard-articles]].
+
+==Buttons==
+You can use these buttons on pages with hCards. See [[buttons#hCard]] for any recent additions.
+
+* http://www.crowley.nl/images/hcard.png (mirror: http://www.davidjanes.com/images/mf_hcard.png)
+* http://rbach.priv.at/2006/buttons/hcard.png
+* http://www.boogdesign.com/images/buttons/microformat_hcard.png
+* CSS-powered button, as evidenced at [http://re-run.com/about/microformat-badges microformat badges @ re-run]
+
+== Copyright ==
+Per the public domain release on the authors' user pages ([[User:Tantek|Tantek Çelik]], [[User:Brian|Brian Suda]]) this specification is released into the public domain.
+
+{{MicroFormatPublicDomainContributionStatement}}
+
+== Patents ==
+{{MicroFormatPatentStatement}}
+
+== References ==
+=== Normative References ===
+* [http://www.w3.org/TR/2002/REC-xhtml1-20020801/ XHTML 1.0 SE]
+* [http://www.ietf.org/rfc/rfc2426.txt vCard RFC2426]
+* [http://www.itu.int/rec/T-REC-E.123-200102-I/en ITU recommendation E.123] format of telephone numbers (chargeable document)
+* [[rfc-2119|RFC 2119]]
+
+=== Informative References ===
+This section is '''informative'''.
+* [[hcard-history|hCard history]]
+** [http://wiki.oreillynet.com/foocamp04/index.cgi?SimpleSemanticFormats FOO Camp 2004 Simple Semantic Formats presentation, 2004-09-10]
+** [http://tantek.com/log/2004/09.html#hcard hCard term introduced and defined on the Web, 2004-09-30]
+** Contributed from http://developers.technorati.com/wiki/hCard 2005-06-20
+* [http://www.dante.net/np/ds/osi/9594-6-X.520.A4.ps X.520 in Postscript] ([http://72.14.253.104/search?q=cache:FjqzsFu4h20J:www.dante.net/np/ds/osi/9594-6-X.520.A4.ps HTMLization courtesy of Google Cache]) - vCard refers to ROLE as being "based on the X.520 Business Category explanatory attribute".
+* [http://www.w3.org/2002/12/cal/rfc2426 HTML reformatted version of RFC2426]
+* [http://w3.org/TR/REC-CSS1 CSS1]
+* [http://www.w3.org/TR/xhtml11 XHTML 1.1]
+* [http://en.wikipedia.org/wiki/E.123 Wikipedia summary of ITU-T Recommendation E.123] - for "TEL" values.
+* [http://www.imc.org/pdi/ Internet Mail Consortium Personal Data Interchange vCard and vCalendar]
+* [[iso-8601|ISO8601]]
+
+==== Specifications That Use hCard ====
+* [[adr]]
+* [[geo]]
+* [[hcalendar|hCalendar]]
+* [[hreview|hReview]]
+
+==== Similar Work ====
+This section is '''informative'''.
+* [http://www.intertwingly.net/wiki/pie/PaceBetterPersonElement Atom PaceBetterPersonElement]
+* [http://www.jabber.org/jeps/jep-0054.html JEP-0054: vcard-temp]
+
+== Inspiration and Acknowledgments ==
+This section is '''informative'''.
+Thanks to: my good friend [http://vadim.com/ Vadim] who introduced me to vCard ''many'' years ago, and if I'd only paid more attention then, perhaps I could have helped a lot of people avoid wasting a lot of time reinventing various standards wheels.
+
+== Notes on derivation from vCard ==
+This section is ''informative''.
+
+<div id="Semantic_XHTML_Design_Principles">See: [[hcard-design-methodology]].</div>
+
+=== More Semantic Equivalents ===
+For some properties there are HTML elements which better match and convey their semantics.  The following properties SHOULD be encoded with the following HTML:
+* <code>URL</code> in vCard becomes  <code><a class="url" href="...">...</a></code> inside the element with <code>class="vcard"</code> in hCard.
+* Similarly, <code>EMAIL</code> in vCard becomes <code><nowiki><a class="email" href="mailto:...">...</a></nowiki></code>
+* <code>PHOTO</code> in vCard becomes <code><img class="photo" src="..." alt="Photo of ..." /></code> or <code><object class="photo" data="..." type="...">Photo of ...</object></code>
+* <code>UID</code> in vCard simply becomes another semantic applied to a specific URL (or EMAIL) for an hCard.
+
+=== Singular and Plural derivations ===
+The [[hcard#Singular_vs._Plural_Properties|lists of singular and plural properties]] have been derived by analyzing the semantics of the individual properties in vCard RFC2426 and determining logically that they MUST be singular per their semantics.  See [[hcard-singular-properties]] for explanations.
+
+==== Plural Properties Singularized ====
+Since plural property names become their singular equivalents, even if the original plural property permitted only a single value with multiple components, those multiple components are represented each with their own singularly named property and the the property is effectively multivalued and subject to the above treatment of multivalued properties.
+
+== Related Pages ==
+{{hcard-related-pages}}
+
+[[Category:Specifications]]
+[[Category:hCard]]
+
+== Translations ==
+The English version of this specification is the only normative version. Read the hCard specification in additional <span id="languages">languages</span>:
+* [[hcard-fr|<span lang="fr">Français</span>]]
+* [[hcard-ja|<span lang="ja">日本語</span>]]
+* [[hcard-ru|<span lang="ru">Русский</span>]]
+* [[hcard-th|<span lang="th">ภาษาไทย</span>]]
+* [[hcard-zh|<span lang="zh">漢語</span>]]
+Help [[how-to-start-new-translation|translate hCard into more languages]].
